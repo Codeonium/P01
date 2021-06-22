@@ -7,7 +7,7 @@ export const useStage = (player, resetPlayer) => {
     useEffect(() => {
         const updateStage = prevStage => {
             // first clear the stage
-            const newStage = prevStage.map(row => row.map(cell => (cell[1] === "clear" ? [0, "clear"] : cell)));
+            const newStage = prevStage.map(row => row.map(cell => (cell[1] === 'clear' ? [0, 'clear'] : cell)));
 
             player.tetromino.forEach((row, y) => {
                 row.forEach((value, x) => {
@@ -16,7 +16,7 @@ export const useStage = (player, resetPlayer) => {
                             value, `${player.collided ? 'merged' : 'clear'}`
                         ];
                     }
-                })
+                });
             });
             if (player.collided) {
                 resetPlayer();
@@ -25,7 +25,7 @@ export const useStage = (player, resetPlayer) => {
             return newStage;
         };
         setStage(prev => updateStage(prev));
-    }, [player])
+    }, [player, resetPlayer])
 
     return [stage, setStage];
-}
+};
